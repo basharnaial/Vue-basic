@@ -1,0 +1,7 @@
+git clone https://etmaam@bitbucket.org/etmaam/client-portal.git
+pwd or dir -- ls
+npm i
+composer install
+code .
+npm run watch
+php artisan serve

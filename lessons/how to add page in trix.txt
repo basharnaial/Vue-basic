@@ -1,0 +1,28 @@
+كيفية إضافة صفحة في مشروع Trix
+مثال صفحة تسجيل الدخول
+1- إنشاء ملف Vue في المسار 
+resources/js/components
+Login.vue
+
+2- إضافة ال Route في ملف web.php
+Route::get('/login', function () {
+    return view('login');
+});
+
+
+3- إنشاء ملف Blade جديد في مجلد resources/views وسميه مثلاً login.blade.php
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <!-- تضمين العناصر الأساسية -->
+</head>
+<body>
+    <div id="app">
+        <login></login>
+    </div>
+    <!-- تضمين النصوص القابلة للترجمة والنماذج -->
+</body>
+</html>
+
+
+

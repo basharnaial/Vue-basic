@@ -1,0 +1,41 @@
+#1 we add routes  in web.php
+Route::get('/packages', function () {
+    return view('packages');
+})->name('packages');
+
+#2 then in resource -> js -> components
+Add a new components Then 
+
+#3
+Then here we add in resource -> js - app js
+To let Vue js know The components
+Vue.component('packages', require('./components/packages.vue').default);
+
+
+
+
+#4 to bring data from api we need to add this in web.php
+Route::get('api2/gettickets', function () {
+    $crawler = Goutte::request('GET', 'https://portal.etmaam.com.sa/api/gettickets/?sha='.request('sha'));
+    return $crawler->text();
+});
+
+
+مثال حي تم تطبيقه صفحة عرض التذاكر في لوحة العميل
+then we add function in api 
+            public function gettickets(){
+                 $user = $this->input->get('sha');
+            $q1 = "SELECT * FROM `tblcontacts` where sha='".$user."';";
+             if($this->db->query($q1)->num_rows() == 0)  {echo json_encode(['logout'=> true]); exit;}
+      $userid = $this->db->query($q1)->result_array();   
+      $userid = $userid[0]['default_company'];
+      
+          $tickets = $this->db->query('SELECT ticketid,subject,message,status,service,priority,date,lastreply FROM `tbltickets` WHERE  `userid` = '.$userid)->result_array();
+                        $data['tickets'] = $tickets;
+
+                           // var_dump($services);
+                            //exit;
+
+                   
+                   echo json_encode($data);
+    }
